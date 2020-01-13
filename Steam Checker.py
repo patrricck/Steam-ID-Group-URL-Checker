@@ -12,11 +12,9 @@ not_available = open('not_available.txt', 'w')
 grouporid = int(input("Would you like to check groups (1) or ID's (2)? "))
 
 def checkIDs(string) :
-    # check the grailed URL for the word
-    # dont even need time.sleep, page doesnt need
-    # to load for a 404 redirect.
+    # check the URL for the word
     browser.get('https://steamcommunity.com/id/' + string)
-    # if its 404 (unmade URL link) then write to the text file
+    # check for text on the page that would indicate it's unmade.
     if ("The specified" in browser.page_source) :
         string.strip()
         available.write(string)
@@ -26,11 +24,9 @@ def checkIDs(string) :
         not_available.write(string)
 
 def checkgroups(string) :
-    # check the grailed URL for the word
-    # dont even need time.sleep, page doesnt need
-    # to load for a 404 redirect.
+    # check the group URL for the word
     browser.get('https://steamcommunity.com/groups/' + string)
-    # if its 404 (unmade URL link) then write to the text file
+    # check for text on the page that would indicate it's unmade.
     if ("No group could be retrieved" in browser.page_source) :
         string.strip()
         available.write(string)
